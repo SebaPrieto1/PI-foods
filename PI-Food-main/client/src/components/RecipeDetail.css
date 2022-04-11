@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap");
+
+.detCont {
+  padding-top: 30px;
+  margin: auto;
+  margin-top: 20px;
+  width: 800px;
+  height: fit-content;
+  border: 1px solid white;
+  border-radius: 25px;
+  background-color: beige;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.detImg {
+  border-radius: 25px;
+  width: 50%;
+}
+
+.detScores {
+  display: flex;
+  flex: wrap;
+  justify-content: center;
+  gap: 15px;
+}

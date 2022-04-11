@@ -1,0 +1,28 @@
+{
+  "recipes1": [
+    {
+      "id": "db1",
+      "name": "Pan",
+      "summary": "Pancito",
+      "score": "100",
+      "healthScore": "100",
+      "Diets": ["vegan"]
+    },
+    {
+      "id": "db2",
+      "name": "Salame",
+      "summary": "Va con pancito",
+      "score": "100",
+      "healthScore": "50",
+      "Diets": ["vegan", "whole 30"]
+    },
+    {
+      "id": "db3",
+      "name": "Queso",
+      "summary": "Va con pancito y salame",
+      "score": "100",
+      "healthScore": "1",
+      "Diets": ["vegan"]
+    }
+  ]
+}
