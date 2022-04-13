@@ -9,45 +9,72 @@ const router = Router();
 router.use(Router.json());
 
 const fetchByid = async (id) => {
-  // let recipe = await axios.get(
-  //   "https://api.spoonacular.com/recipes/" +
-  //     id +
-  //     "/information?includeNutrition=true&apiKey=defde7e3ceea4a208d6f875603852c39"
-  // );
-  let recipe = await axios.get(
-    "https://api.spoonacular.com/recipes/" +
-      id +
-      "/information?includeNutrition=true&apiKey=887fe1a493804b44bad09cb48bea68f7"
-  );
-  recipe = {
-    id: recipe.data.id,
-    name: recipe.data.title,
-    score: recipe.data.spoonacularScore,
-    summary: recipe.data.summary,
-    healthScore: recipe.data.healthScore,
-    cookingSteps: recipe.data.analyzedInstructions.length
-      ? recipe.data.analyzedInstructions[0].steps.map((current) => current.step)
-      : null,
-    image: recipe.data.image,
-    Diets: recipe.data.diets,
-  };
-  return recipe;
+  try {
+    // let recipe = await axios.get(
+    //   "https://api.spoonacular.com/recipes/" +
+    //     id +
+    //     "/information?includeNutrition=true&apiKey=defde7e3ceea4a208d6f875603852c39"
+    // );
+    // let recipe = await axios.get(
+    //   "https://api.spoonacular.com/recipes/" +
+    //     id +
+    //     "/information?includeNutrition=true&apiKey=887fe1a493804b44bad09cb48bea68f7"
+    // );
+
+    // let recipe = await axios.get(
+    //   "https://api.spoonacular.com/recipes/" +
+    //     id +
+    //     "/information?includeNutrition=true&apiKey=d72f87a933c244d2894bdf5776dae33a"
+    // );
+
+    let recipe = await axios.get(
+      "https://api.spoonacular.com/recipes/" +
+        id +
+        "/information?includeNutrition=true&apiKey=341e565bb4fa4043ba391b65160d76bb"
+    );
+
+    recipe = {
+      id: recipe.data.id,
+      name: recipe.data.title,
+      score: recipe.data.spoonacularScore,
+      summary: recipe.data.summary,
+      healthScore: recipe.data.healthScore,
+      cookingSteps: recipe.data.analyzedInstructions.length
+        ? recipe.data.analyzedInstructions[0].steps.map(
+            (current) => current.step
+          )
+        : null,
+      image: recipe.data.image,
+      Diets: recipe.data.diets,
+    };
+    return recipe;
+  } catch (err) {
+    return 0;
+  }
 };
 const fetchDataFromApi = async () => {
   try {
     // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=defde7e3ceea4a208d6f875603852c39"
+    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=100&apiKey=defde7e3ceea4a208d6f875603852c39"
     // );
     // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=5&apiKey=887fe1a493804b44bad09cb48bea68f7"
+    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=887fe1a493804b44bad09cb48bea68f7"
     // );
 
     // let result = await axios.get(
     //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=5&apiKey=dfef60fd7ebc4298bc6e4dfc8950a496"
     // );
 
+    // let result = await axios.get(
+    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=bb800cbc3e3a495da414abd0a7f16b1b"
+    // );
+
+    // let result = await axios.get(
+    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=d72f87a933c244d2894bdf5776dae33a"
+    // );
+
     let result = await axios.get(
-      "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=5&apiKey=bb800cbc3e3a495da414abd0a7f16b1b"
+      "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=341e565bb4fa4043ba391b65160d76bb"
     );
 
     const rawdata = await result.data.results.map((recipe) => {
@@ -66,7 +93,7 @@ const fetchDataFromApi = async () => {
     });
     return rawdata;
   } catch (err) {
-    res.status(404).send("Fallo de la API");
+    return [];
   }
 };
 
@@ -139,7 +166,6 @@ router.get("/recipes/:id", async (req, res) => {
         },
       },
     });
-    console.log(result);
     if (result) {
       result = result.toJSON();
       result = { ...result, Diets: result.Diets.map((diet) => diet.name) };

@@ -3,14 +3,6 @@ import { Link } from "react-router-dom";
 import "./RecipeCard.css";
 
 const RecipeCard = (props) => {
-  function toUpper(str) {
-    let result = "";
-    for (let i = 0; i < str.length; i++) {
-      if ((i = 0)) result += str[i].toUpperCase();
-      else result += str[i];
-    }
-    return result;
-  }
   return (
     <div className="card">
       <Link to={"/main/recipe/" + props.id}>

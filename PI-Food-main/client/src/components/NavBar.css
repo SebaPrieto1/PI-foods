@@ -1,9 +1,10 @@
 .bar {
+  padding-top: 6px;
   background-color: darkgreen;
+  height: 30px;
 }
 
 .barBtn {
-  /* appearance: button; */
   background-color: transparent;
   background-image: linear-gradient(to bottom, #fff, #f8eedb);
   border: 0 solid #e5e7eb;
@@ -23,7 +24,6 @@
   outline: 2px solid transparent;
   padding: 5px 10px;
   text-align: center;
-  /* transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); */
   touch-action: manipulation;
   box-shadow: -6px 8px 10px rgba(81, 41, 10, 0.1),
     0px 2px 2px rgba(81, 41, 10, 0.2);
@@ -48,4 +48,23 @@ button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
+}
+
+.selected {
+  background-color: olive;
+}
+
+.unselected {
+  border-radius: 10px;
+  color: white;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 2px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
 }

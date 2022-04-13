@@ -2,12 +2,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, getRecipeById, getDiets } from "../redux/actions";
+import { getRecipes, getDiets } from "../redux/actions";
 import RecipeCard from "./RecipeCard";
 import "./Home.css";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const showedCards = 9;
   const [filter, setFilter] = useState({
     diets: [],
     order: "10to1", //AtoZ, ZtoA, 10to1, 1to10
@@ -15,38 +16,46 @@ export default function Home() {
   });
   const [pageCounter, setPageCounter] = useState(1);
   const [recetasRender, setRecetasRender] = useState([]);
+  const [pages, setPages] = useState([]);
   const loadedRecipes = useSelector((state) => state.recipes);
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiets());
+    // eslint-disable-next-line
   }, []);
   useEffect(() => {
     setRecetasRender(loadedRecipes);
+    // eslint-disable-next-line
   }, [loadedRecipes]);
   useEffect(() => {
-    console.log("Hubo un cambio en el filter");
     setRecetasRender(applyFilters(loadedRecipes));
     setPageCounter(1);
+    // eslint-disable-next-line
   }, [filter]);
   useEffect(() => {
+    let pagTot = Math.ceil(recetasRender.length / showedCards);
+    let desechable = [];
+    for (let i = 0; i < pagTot; i++) {
+      desechable.push("");
+    }
+    setPages(desechable);
     let btnDec = document.getElementById("btnDec");
     let btnInc = document.getElementById("btnInc");
-    if (recetasRender.length < 9) {
-      console.log("aca recetas render entro en el <9");
+    if (recetasRender.length < showedCards) {
       btnInc.disabled = true;
       btnDec.disabled = true;
       return;
     } else if (pageCounter == 1) {
       btnDec.disabled = true;
       btnInc.disabled = false;
-    } else if (pageCounter >= recetasRender.length / 9) {
-      console.log(recetasRender.length / 9, "largo de las recetas render");
+    } else if (pageCounter >= recetasRender.length / showedCards) {
       btnDec.disabled = false;
       btnInc.disabled = true;
     } else {
       btnDec.disabled = false;
       btnInc.disabled = false;
     }
+    // eslint-disable-next-line
   }, [pageCounter, recetasRender]);
 
   function IncrementIndexHandler(e) {
@@ -60,7 +69,6 @@ export default function Home() {
     setFilter({ ...filter, nameFilter: e.target.value });
   }
   function orderHandler(e) {
-    console.log("entre aca. value: ", e.target.value);
     setFilter({
       ...filter,
       order: e.target.value,
@@ -234,9 +242,13 @@ export default function Home() {
         <div className="recipesContainer">
           {recetasRender.length ? (
             recetasRender?.map((recipe, index) => {
-              if (index < pageCounter * 9 && index >= (pageCounter - 1) * 9)
+              if (
+                index < pageCounter * showedCards &&
+                index >= (pageCounter - 1) * showedCards
+              )
                 return (
                   <RecipeCard
+                    key={index}
                     id={recipe.id}
                     image={recipe.image}
                     name={recipe.name}
@@ -244,19 +256,68 @@ export default function Home() {
                     diets={recipe.Diets}
                   ></RecipeCard>
                 );
+              return;
             })
           ) : (
             <h2>No recipes found</h2>
           )}
         </div>
         <div className="botIndex">
-          <button className="btn" id="btnDec" onClick={DrecrementIndexHandler}>
-            -
-          </button>
-          <h6>{pageCounter}</h6>
-          <button className="btn" id="btnInc" onClick={IncrementIndexHandler}>
-            +
-          </button>
+          <div className="downbtns">
+            {pages.map((e, i) => {
+              return pageCounter > i ? (
+                <button
+                  key={"bot" + i}
+                  name={i + 1}
+                  hidden={
+                    pageCounter === i + 1 || pageCounter > i + 4 ? true : false
+                  }
+                  onClick={(e) => {
+                    setPageCounter(Number(e.target.name));
+                  }}
+                >
+                  {i + 1}
+                </button>
+              ) : (
+                <></>
+              );
+            })}
+          </div>
+          <div className="upAndDown">
+            <button
+              className="btn"
+              id="btnDec"
+              onClick={DrecrementIndexHandler}
+            >
+              -
+            </button>
+            <h6>{pageCounter}</h6>
+            <button className="btn" id="btnInc" onClick={IncrementIndexHandler}>
+              +
+            </button>
+          </div>
+          <div className="topbtns">
+            {pages.map((e, i) => {
+              return pageCounter <= i ? (
+                <button
+                  key={"top" + i}
+                  name={i + 1}
+                  hidden={
+                    pageCounter === i + 1 || i + 1 > pageCounter + 3
+                      ? true
+                      : false
+                  }
+                  onClick={(e) => {
+                    setPageCounter(Number(e.target.name));
+                  }}
+                >
+                  {i + 1}
+                </button>
+              ) : (
+                <></>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ const initialState = {
   recipes: [],
   recipe: {},
   diets: [],
+  loading: "loading", //loading, notFound, found,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,15 +15,15 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, recipe: action.payload };
     case actions.CREATE_RECIPE:
       return { ...state, recipes: [...state.recipes, action.payload] };
-    case actions.DELETE_RECIPE:
-      return {
-        ...state,
-        recipes: state.recipes.filter((recipe) => recipe.id !== action.payload),
-      };
     case actions.GET_DIETS:
       return {
         ...state,
         diets: action.payload,
+      };
+    case actions.SET_LOAD:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

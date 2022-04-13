@@ -1,9 +1,9 @@
 import React from "react";
-
+import "./RecipeDetail.css";
 const Step = (props) => {
   return (
     <div>
-      <h5>{`[${props.index}] ${props.data}`}</h5>
+      <h6 className="strech">{`${props.index + 1}) ${props.data}`}</h6>
     </div>
   );
 };

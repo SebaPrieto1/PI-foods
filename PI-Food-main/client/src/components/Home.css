@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap");
+
 .wrapper {
   display: flex;
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
 }
 .recipesContainer {
   /* height: 100%; */
@@ -15,21 +17,40 @@
 }
 
 .filterWrap {
+  margin-top: 30px;
+  padding-bottom: 150px;
+  padding-right: 20px;
   padding-left: 15px;
   display: flex;
   flex-direction: column;
   max-width: 400px;
   background-color: green;
   color: white;
-  height: 100%;
+  height: fit-content;
   align-items: flex-start;
+  border: 1px solid white;
+  border-radius: 25px;
 }
 
 .botIndex {
-  background-color: darkgreen;
+  width: 100%;
+  /* offset: 100%; */
+  /* right: 0;
+  bottom: 0;  */
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.botIndex > *:nth-child(1) {
+  flex-basis: 45%;
+}
+.botIndex > *:nth-child(2) {
+  flex-basis: 10%;
+}
+.botIndex > *:nth-child(3) {
+  flex-basis: 45%;
 }
 
 .btn {
@@ -45,4 +66,31 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+.topIndex {
+  border: 1px solid white;
+  border-radius: 15px;
+  background-color: beige;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 40px;
+}
+
+.upAndDown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.downbtns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.topbtns {
+  display: flex;
+  align-items: flex-end;
 }

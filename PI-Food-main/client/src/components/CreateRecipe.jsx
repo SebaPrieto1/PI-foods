@@ -28,6 +28,7 @@ export default function CreateRecipe() {
 
   useEffect(() => {
     dispatch(getDiets());
+    // eslint-disable-next-line
   }, []);
   useEffect(() => {
     if (
@@ -50,9 +51,7 @@ export default function CreateRecipe() {
   }
   function uncheckAll() {
     const cboxs = [...document.querySelectorAll("input[type=checkbox]")];
-    cboxs.map((cbox) => {
-      cbox.checked = false;
-    });
+    cboxs.map((cbox) => (cbox.checked = false));
     setDatos({
       name: "",
       summary: "",
