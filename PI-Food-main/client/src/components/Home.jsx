@@ -224,10 +224,6 @@ export default function Home() {
             onChange={orderHandler}
             defaultValue="10to1"
           >
-            <option value="10to1">100-1</option>
-            <option value="1to10" className="type_option">
-              1-100
-            </option>
             <option value="AtoZ" className="type_option">
               A to Z
             </option>
@@ -254,6 +250,7 @@ export default function Home() {
                     name={recipe.name}
                     score={recipe.score}
                     diets={recipe.Diets}
+                    summary={recipe.summary}
                   ></RecipeCard>
                 );
               return;

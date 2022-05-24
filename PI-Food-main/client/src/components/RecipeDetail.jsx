@@ -13,9 +13,7 @@ const RecipeDetail = (props) => {
     dispatch(getRecipeById(id));
     // eslint-disable-next-line
   }, []);
-  function logRecipe() {
-    console.log(recipe);
-  }
+
   return (
     <div>
       {loading === "found" ? (
@@ -28,12 +26,15 @@ const RecipeDetail = (props) => {
               alt="URL Not Found"
             ></img>
             <div className="detScores">
-              <h4>{`Dish score: ${recipe.score}`}</h4>
               <h4>{`Health score: ${recipe.healthScore}`}</h4>
             </div>
             <div>
               {recipe.Diets?.map((diet) => {
-                return <span className="tag">{diet} </span>;
+                return (
+                  <span className="tag">
+                    {diet[0].toUpperCase() + diet.slice(1)}{" "}
+                  </span>
+                );
               })}
             </div>
             <br></br>
@@ -62,9 +63,6 @@ const RecipeDetail = (props) => {
             ) : (
               <h4>No cooking steps</h4>
             )}
-            <div>
-              <button onClick={logRecipe}></button>
-            </div>
           </div>
         </div>
       ) : loading === "loading" ? (

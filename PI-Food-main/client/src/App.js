@@ -1,6 +1,5 @@
 import "./App.css";
-//Hay que envolverla en el router
-import { BrowserRouter, Route, Switch } from "react-router-dom"; //Investigar esto
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import RecipeDetail from "./components/RecipeDetail";
@@ -12,6 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Redirect from="/" to="/main" />
         <Route path={"/main/:any"} component={NavBar}></Route>
         <Switch>
           <Route exact path={"/main"} component={LandingPage}></Route>

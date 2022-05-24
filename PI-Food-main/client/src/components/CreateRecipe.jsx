@@ -55,7 +55,7 @@ export default function CreateRecipe() {
     setDatos({
       name: "",
       summary: "",
-      score: "",
+      score: "0 ",
       healthScore: "",
       cookingSteps: [""],
       diets: [],
@@ -120,7 +120,7 @@ export default function CreateRecipe() {
           <span className="err">{error.summary}</span>
         </div>
         <br></br>
-        <div className="optionContainer">
+        {/* <div className="optionContainer">
           <label className="generalText">Dish score: </label>
           <input
             className="input_Create"
@@ -129,7 +129,7 @@ export default function CreateRecipe() {
             value={datos.score}
           ></input>
           <span className="err">{error.score}</span>
-        </div>
+        </div> */}
         <br></br>
         <div className="optionContainer">
           <label className="generalText">Health score: </label>
@@ -188,11 +188,15 @@ export default function CreateRecipe() {
             return (
               <div className="tg" key={index}>
                 <input
+                  id={index + element.name}
                   name={element.name}
                   type="checkbox"
                   onChange={dietHandler}
                 ></input>
-                <label>{element.name}</label>
+                <label className="diet-label" htmlFor={index + element.name}>
+                  {element.name.slice(0, 1).toUpperCase() +
+                    element.name.slice(1)}
+                </label>
               </div>
             );
           })}

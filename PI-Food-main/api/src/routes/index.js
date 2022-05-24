@@ -8,29 +8,18 @@ const res = require("express/lib/response");
 const router = Router();
 router.use(Router.json());
 
+const urlKey = "Key=bb800cbc3e3a495da414abd0a7f16b1b";
+//Alternative keys
+// Key=d72f87a933c244d2894bdf5776dae33a
+// Key=dfef60fd7ebc4298bc6e4dfc8950a496
+
 const fetchByid = async (id) => {
   try {
-    // let recipe = await axios.get(
-    //   "https://api.spoonacular.com/recipes/" +
-    //     id +
-    //     "/information?includeNutrition=true&apiKey=defde7e3ceea4a208d6f875603852c39"
-    // );
-    // let recipe = await axios.get(
-    //   "https://api.spoonacular.com/recipes/" +
-    //     id +
-    //     "/information?includeNutrition=true&apiKey=887fe1a493804b44bad09cb48bea68f7"
-    // );
-
-    // let recipe = await axios.get(
-    //   "https://api.spoonacular.com/recipes/" +
-    //     id +
-    //     "/information?includeNutrition=true&apiKey=d72f87a933c244d2894bdf5776dae33a"
-    // );
-
     let recipe = await axios.get(
       "https://api.spoonacular.com/recipes/" +
         id +
-        "/information?includeNutrition=true&apiKey=341e565bb4fa4043ba391b65160d76bb"
+        "/information?includeNutrition=true&api" +
+        urlKey
     );
 
     recipe = {
@@ -54,27 +43,9 @@ const fetchByid = async (id) => {
 };
 const fetchDataFromApi = async () => {
   try {
-    // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=100&apiKey=defde7e3ceea4a208d6f875603852c39"
-    // );
-    // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=887fe1a493804b44bad09cb48bea68f7"
-    // );
-
-    // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=5&apiKey=dfef60fd7ebc4298bc6e4dfc8950a496"
-    // );
-
-    // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=bb800cbc3e3a495da414abd0a7f16b1b"
-    // );
-
-    // let result = await axios.get(
-    //   "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=d72f87a933c244d2894bdf5776dae33a"
-    // );
-
     let result = await axios.get(
-      "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=15&apiKey=341e565bb4fa4043ba391b65160d76bb"
+      "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&offset=&number=100&api" +
+        urlKey
     );
 
     const rawdata = await result.data.results.map((recipe) => {

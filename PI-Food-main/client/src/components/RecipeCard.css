@@ -51,4 +51,9 @@
   font-family: "Playfair Display", serif;
   /* font-family: "Beau Rivage", cursive; */
   font-size: 20px;
+  color: black;
+}
+
+.link-underline {
+  text-decoration: none;
 }

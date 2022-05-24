@@ -83,6 +83,7 @@
   background-color: white;
   color: olive;
   margin: 2px;
+  cursor: pointer;
 }
 
 .stepBtn {
@@ -107,4 +108,8 @@
 
 .stepLeft {
   margin-left: 10px;
+}
+
+.diet-label {
+  cursor: pointer;
 }

@@ -4,17 +4,22 @@ import "./RecipeCard.css";
 
 const RecipeCard = (props) => {
   return (
-    <div className="card">
-      <Link to={"/main/recipe/" + props.id}>
+    <Link className="link-underline" to={"/main/recipe/" + props.id}>
+      <div className="card">
         <img className="img" src={props.image} alt="404 Not found"></img>
-      </Link>
-      <div className="tagContainer">
-        {props.diets?.map((diet) => {
-          return <span className="tag">{diet}</span>;
-        })}
+
+        <div className="tagContainer">
+          {props.diets?.map((diet) => {
+            return (
+              <span className="tag">
+                {diet[0].toUpperCase() + diet.slice(1)}
+              </span>
+            );
+          })}
+        </div>
+        <p className="cardTitle">{props.name}</p>
       </div>
-      <p className="cardTitle">{props.name}</p>
-    </div>
+    </Link>
   );
 };
 
