@@ -10,7 +10,7 @@ export default function CreateRecipe() {
   const [datos, setDatos] = React.useState({
     name: "",
     summary: "",
-    score: "",
+    score: "10",
     healthScore: "",
     cookingSteps: [""],
     diets: [],
