@@ -5,13 +5,7 @@
 * La SPA obtiene los datos de una API a través de un Back End desarrollado en NodeJs, junto con Express, PostgresSQL y Sequelize.
 * Entre otras funcionalidades se destacan: filtros, ordenamientos, búsqueda por nombre y formularios controlados.
 
-## Puesta en marcha
-* 1 Clonar/Descar el repositorio.
-* 2 Descargar Node JS en caso de no tenerlo instalado
-* 3 Abrir una consola (PowerShell/cmd en Windows) y posicionarse dentro de la carpeta api
-* 4 En la consola ejecutar el comando: npm install
-* 5 Cuando termine de cargar ejecutar npm start
-* 6 Realizar los pasos 4 y 5 nuevamente pero ***posicionado dentro de la carpeta client*** desde la consola
+
 
 ## Ilustraciones
 ### Listado de recetas
